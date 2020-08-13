@@ -1,0 +1,46 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd (5,4,3,2,1,0);
+int LM35 = A0; // lm35
+int PIR = 13; // pin hoặc PIR
+giá trị int = 0; // STATE cho PIR
+int led = 12; // pin cho led
+
+void setup () 
+{
+  lcd.begin (16,2); // khởi động LCD
+  pinMode (PIR, INPUT); 
+  pinMode (led, OUTPUT);   
+}
+
+void loop () {
+  int read = analogRead (LM35); // Volt đọc trên LM35
+  float điện áp = đọc * 5.0 / 1024.0; // 10mv = 1 ^ C
+  float temp = điện áp * 100.0; // chuyển đổi tạm thời
+
+  // hien thi LCD
+  //lcd.clear ();
+  lcd.setCursor (0,0);  
+  lcd.print ("Nhiet do:"); 
+  lcd.setCursor (11,0);
+  lcd.print (tạm thời);
+  lcd.write (223);
+  lcd.print ("C");
+
+ // Đọc trạng thái trên PIR
+  value = digitalRead (13);
+      if (giá trị == HIGH)
+      {
+        digitalWrite (dẫn đầu, HIGH); // out for led
+        lcd.setCursor (1,1);
+        lcd.print ("Động cơ!"); // ra cho lcd
+        chậm trễ (100);
+      }
+      if (giá trị == LOW)
+      {
+        digitalWrite (đã dẫn, THẤP); // out for led
+        lcd.setCursor (1,1); 
+        lcd.print (""); // xóa Motive!
+        chậm trễ (100);
+
+  }
+}
